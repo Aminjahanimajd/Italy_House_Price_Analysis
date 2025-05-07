@@ -57,7 +57,6 @@ Evaluation plots showing predicted vs actual prices are stored under `plots/`:
 ## 🏆 Best Model
 The **Random Forest Regressor** performed the best and was saved as a pipeline for future use:
 
-```python
 joblib.dump(rf_pipeline, 'random_forest_pipeline.pkl')
 
 ## 📁 Project Structure
