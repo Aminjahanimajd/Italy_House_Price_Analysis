@@ -25,8 +25,8 @@ Plots are saved under the `plots/` directory for reference.
 
 | Visualization | File Path |
 |---------------|-----------|
-| Log Price Distribution | `plots/price_distribution.png` |
-| Correlation Heatmap    | `plots/correlation_heatmap.png` |
+| Log Price Distribution | ./plots/price_distribution.png |
+| Correlation Heatmap    | ./plots/correlation_heatmap.png |
 
 ---
 
@@ -49,9 +49,9 @@ Evaluation plots showing predicted vs actual prices are stored under `plots/`:
 
 | Model                  | Plot Path |
 |------------------------|-----------|
-| Linear Regression       | `plots/actual_vs_predicted_LinearRegression.png` |
-| Decision Tree Regressor | `plots/actual_vs_predicted_DecisionTreeRegressor.png` |
-| Random Forest Regressor | `plots/actual_vs_predicted_RandomForestRegressor.png` |
+| Linear Regression       | ./plots/actual_vs_predicted_LinearRegression.png |
+| Decision Tree Regressor | ./plots/actual_vs_predicted_DecisionTreeRegressor.png |
+| Random Forest Regressor | ./plots/actual_vs_predicted_RandomForestRegressor.png |
 
 ---
 ## 🏆 Best Model
