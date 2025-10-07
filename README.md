@@ -1,86 +1,77 @@
-# 🏠 House Price Analysis and Prediction in Italy
+# House Price Analysis & Prediction — Italy
 
-This project presents a full machine learning workflow to analyze and predict housing prices in Italy using a cleaned real estate dataset. It includes data preprocessing, exploratory data analysis (EDA), feature engineering, model training, evaluation, and deployment of the best model.
+This project demonstrates an end-to-end machine learning workflow for predicting housing prices in Italy: data cleaning, exploratory data analysis, feature engineering, model training, evaluation, and saving a trained pipeline.
 
-## 📂 Dataset
+## Files
 
-The dataset is sourced from Kaggle:  
-[Italy House Prices – Kaggle Dataset](https://www.kaggle.com/datasets/tommasoramella/italy-house-prices?resource=download)
+- `sale_clean.csv` — cleaned dataset used for modeling
+- `house_price_analysis.py` — main analysis and model training script
+- `random_forest_pipeline.pkl` — saved sklearn pipeline (best model)
+- `Plots/` — visualizations (price distribution, correlation heatmap, predicted vs actual plots)
 
-The cleaned version of the dataset used for modeling is named: `sale_clean.csv`.
+## Dataset
 
-## 🧹 Data Cleaning
-- Converted 'prezzo' (price) column to numeric format.
-- Removed outliers with unrealistic price values.
-- Dropped irrelevant or sparse columns such as `datetime` and `quartiere`.
+Original dataset source: https://www.kaggle.com/datasets/tommasoramella/italy-house-prices
 
-## 📊 Exploratory Data Analysis (EDA)
+The included `sale_clean.csv` is a preprocessed subset used for training and evaluation.
 
-Key visualizations were generated to understand the dataset:
+## Requirements
 
-- **Price Distribution** (log-transformed)
-- **Correlation Heatmap** (numerical features)
+Python 3.8+
 
-Plots are saved under the `plots/` directory for reference.
+Recommended packages:
 
-| Visualization | File Path |
-|---------------|-----------|
-| Log Price Distribution | [./Plots/price_distribution.png](./Plots/price_distribution.png) |
-| Correlation Heatmap    | [./Plots/correlation_heatmap.png](./Plots/correlation_heatmap.png) |
+- pandas
+- numpy
+- scikit-learn
+- matplotlib
+- seaborn
+- joblib
+
+Install quickly with:
+
+pip install pandas numpy scikit-learn matplotlib seaborn joblib
+
+## How to run
+
+1. (Optional) Create and activate a virtual environment:
+
+   python -m venv .venv
+   .venv\\Scripts\\activate   # Windows (cmd.exe)
+
+2. Install dependencies (see above).
+
+3. To run the main training script and reproduce results:
+
+   python house_price_analysis.py
+
+4. To load the saved Random Forest pipeline and make predictions from Python:
+
+```python
+import joblib
+import pandas as pd
+
+pipe = joblib.load('random_forest_pipeline.pkl')
+# example: predict on a small sample from the CSV
+sample = pd.read_csv('sale_clean.csv').head(5)
+preds = pipe.predict(sample)
+print(preds)
+```
+
+## Results summary
+
+- Models trained: Linear Regression, Decision Tree, Random Forest
+- Best model: Random Forest (saved as `random_forest_pipeline.pkl`)
+- Evaluation: RMSE and R² scores are shown in the script output and plots in `Plots/`.
+
+## Next steps / ideas
+
+- Hyperparameter tuning using GridSearchCV or RandomizedSearchCV
+- Model explainability with SHAP or permutation importance
+- Deploy the model behind a small Flask API for inference
 
 ---
 
-## 🏗️ Feature Engineering
-- Identified numerical and categorical columns.
-- Used pipelines with `SimpleImputer`, `StandardScaler`, and `OneHotEncoder`.
-- Applied `ColumnTransformer` for combined preprocessing.
+Author: Mohammadamin (Amin) Jahanimajd
 
-## 🤖 Model Training & Evaluation
-
-Three regression models were trained and compared:
-
-| Model                   | RMSE (€)   | R² Score |
-|------------------------|------------|----------|
-| Linear Regression       | 374,218.64 | 0.4124   |
-| Decision Tree Regressor | 385,286.93 | 0.3771   |
-| Random Forest Regressor | 336,404.69 | 0.5251   |
-
-Evaluation plots showing predicted vs actual prices are stored under `plots/`:
-
-| Model                  | Plot Path |
-|------------------------|-----------|
-| Linear Regression       | [./Plots/actual_vs_predicted_LinearRegression.png](./Plots/actual_vs_predicted_LinearRegression.png) |
-| Decision Tree Regressor | [./Plots/actual_vs_predicted_DecisionTreeRegressor.png](./Plots/actual_vs_predicted_DecisionTreeRegressor.png) |
-| Random Forest Regressor | [./Plots/actual_vs_predicted_RandomForestRegressor.png](./Plots/actual_vs_predicted_RandomForestRegressor.png) |
-
----
-## 🏆 Best Model
-The **Random Forest Regressor** performed the best and was saved as a pipeline for future use:
-
-joblib.dump(rf_pipeline, 'random_forest_pipeline.pkl')
-
-## 📁 Project Structure
-italy-house-price-analysis/
-│
-├── sale_clean.csv
-├── random_forest_pipeline.pkl
-├── house_price_analysis.py
-├── plots/
-│   ├── price_distribution.png
-│   ├── correlation_heatmap.png
-│   ├── actual_vs_predicted_LinearRegression.png
-│   ├── actual_vs_predicted_DecisionTreeRegressor.png
-│   └── actual_vs_predicted_RandomForestRegressor.png
-└── README.md
-
-
-## 📚 Requirements
-Install required packages using:
-
-bash pip install pandas numpy matplotlib seaborn scikit-learn joblib
-
-## 👤 Author
-Amin
-Second-year Data Analysis student
-University of Messina, Italy
-Aspiring Machine Learning Engineer
+University of Messina — BSc Data Analysis
